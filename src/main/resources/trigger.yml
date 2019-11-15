@@ -1,0 +1,3 @@
+trigger:
+  lock-type: db
+  #数据库版本管理

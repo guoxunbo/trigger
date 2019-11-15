@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: com_trigger_drop_column-ref_updatable-add-column-state
+      author: Xunbo Guo
+      remarks: com_trigger drop column ref updatable and addColumn state
+      changes:
+        - dropColumn:
+            tableName: COM_TRIGGER
+            columnName: CREATED
+        - dropColumn:
+            tableName: COM_TRIGGER
+            columnName: CREATED_BY
+        - dropColumn:
+            tableName: COM_TRIGGER
+            columnName: UPDATED_BY
+        - dropColumn:
+            tableName: COM_TRIGGER
+            columnName: UPDATED
+        - dropColumn:
+            tableName: COM_TRIGGER
+            columnName: LOCK_VERSION
+        - addColumn:
+            tableName: COM_TRIGGER
+            columns:
+              - column:
+                  name: STATE
+                  type: varchar2(64)
+                  remarks: 状态

@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: com_trigger_his_add-column-state
+      author: Xunbo Guo
+      remarks: com_trigger_his addColumn state
+      changes:
+        - addColumn:
+            tableName: COM_TRIGGER_HIS
+            columns:
+              - column:
+                  name: STATE
+                  type: varchar2(64)
+                  remarks: 状态

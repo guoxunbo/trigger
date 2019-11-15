@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - include:
+      file: db.changelog-0.0.1.trigger_lock.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-0.0.1.trigger_instance.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-0.0.1.trigger_instance_his.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-0.0.2.trigger_instance.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-0.0.2.trigger_instance_his.yaml
+      relativeToChangelogFile: true
