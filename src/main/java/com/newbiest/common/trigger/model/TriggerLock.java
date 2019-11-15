@@ -21,7 +21,7 @@ public class TriggerLock extends NBUpdatable {
 
     public static final String PARAMETER_TRIGGER_LOCK_EFFECTIVE_NAME = "trigger_lock_effective";
 
-    public static final String DEFAULT_TRIGGER_LOCK_EFFECTIVE_VALUE = "5";
+    public static final String DEFAULT_TRIGGER_LOCK_EFFECTIVE_VALUE = "30";
 
     public static final String LOCK_STATE_LOCK = "Lock";
 

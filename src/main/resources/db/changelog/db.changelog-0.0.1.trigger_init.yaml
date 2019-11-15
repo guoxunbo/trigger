@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: init_trigger_daemon_data
+      author: Xunbo Guo
+      comment: Init trigger_daemon data
+      preConditions:
+          sqlCheck:
+            sql: select count(*) from com_trigger where name = 'Daemon'
+            expectedResult: 0
+      changes:
+        - insert:
+            tableName: COM_TRIGGER
+            columns:
+              - column:
+                  name: OBJECT_RRN
+                  value: 1
+              - column:
+                  name: ACTIVE_FLAG
+                  value: Y
+              - column:
+                  name: ORG_RRN
+                  value: 0
+              - column:
+                  name: NAME
+                  value: Daemon
+              - column:
+                  name: DESCRIPTION
+                  value: 守护线程
+              - column:
+                  name: CRON_EXPRESSION
+                  value: 0/30 * * * * ?
+

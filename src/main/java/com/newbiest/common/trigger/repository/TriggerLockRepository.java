@@ -6,6 +6,7 @@ import com.newbiest.common.trigger.model.TriggerInstanceHistory;
 import com.newbiest.common.trigger.model.TriggerLock;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -15,6 +16,6 @@ public interface TriggerLockRepository extends IRepository<TriggerLock, Long> {
 
     @Modifying
     @Query("DELETE FROM TriggerLock TriggerLock WHERE TriggerLock.triggerName = :triggerName")
-    void deleteByTriggerName(String triggerName) throws ClientException;
+    void deleteByTriggerName(@Param("triggerName") String triggerName) throws ClientException;
 
 }
