@@ -1,10 +1,12 @@
 package com.newbiest.common.trigger.rest.trigger;
 
+import com.newbiest.base.msg.RequestBody;
 import com.newbiest.common.trigger.model.TriggerInstance;
-import com.newbiest.msg.RequestBody;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * Created by guoxunbo on 2017/9/29.

@@ -1,6 +1,6 @@
 package com.newbiest.common.trigger.rest.trigger;
 
-import com.newbiest.msg.Response;
+import com.newbiest.base.msg.Response;
 import lombok.Data;
 
 /**

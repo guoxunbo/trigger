@@ -1,11 +1,11 @@
 package com.newbiest.common.trigger.rest.trigger;
 
 import com.newbiest.base.exception.ClientException;
+import com.newbiest.base.msg.Request;
 import com.newbiest.base.rest.AbstractRestController;
 import com.newbiest.base.service.BaseService;
 import com.newbiest.common.trigger.model.TriggerInstance;
 import com.newbiest.common.trigger.service.TriggerService;
-import com.newbiest.msg.Request;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;

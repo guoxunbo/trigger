@@ -6,9 +6,9 @@ import com.newbiest.base.exception.ExceptionManager;
 import com.newbiest.base.model.NBParameter;
 import com.newbiest.base.service.BaseService;
 import com.newbiest.base.service.FrameworkCacheService;
+import com.newbiest.base.threadlocal.ThreadLocalContext;
 import com.newbiest.base.utils.CollectionUtils;
 import com.newbiest.base.utils.DateUtils;
-import com.newbiest.base.utils.ThreadLocalContext;
 import com.newbiest.common.trigger.Exceptions;
 import com.newbiest.common.trigger.NewbiestScheduleConfig;
 import com.newbiest.common.trigger.TriggerConfiguration;
@@ -99,7 +99,8 @@ public class TriggerServiceImpl implements TriggerService {
     }
 
     public List<TriggerInstance> getTriggerByState(String state) throws ClientException {
-        return triggerInstanceRepository.findAll(NBOrg.GLOBAL_ORG_RRN, "state = '" + state + "'", "");
+        return triggerInstanceRepository.getByState(state);
+        //return triggerInstanceRepository.findAll(NBOrg.GLOBAL_ORG_RRN, "state = '" + state + "'", "");
     }
 
     public List<TriggerInstance> getTriggerInstance() throws ClientException {

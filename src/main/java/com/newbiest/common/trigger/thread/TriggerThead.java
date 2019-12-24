@@ -1,10 +1,9 @@
 package com.newbiest.common.trigger.thread;
 
 import com.google.common.base.Stopwatch;
-import com.newbiest.base.annotation.MethodMonitor;
-import com.newbiest.base.utils.SessionContext;
+import com.newbiest.base.threadlocal.SessionContext;
+import com.newbiest.base.threadlocal.ThreadLocalContext;
 import com.newbiest.base.utils.StringUtils;
-import com.newbiest.base.utils.ThreadLocalContext;
 import com.newbiest.common.trigger.TriggerContext;
 import com.newbiest.common.trigger.model.TriggerInstance;
 import com.newbiest.common.trigger.model.TriggerInstanceHistory;
