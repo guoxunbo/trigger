@@ -1,7 +1,7 @@
 package com.newbiest.common.trigger.thread;
 
 import com.google.common.base.Stopwatch;
-import com.newbiest.base.threadlocal.SessionContext;
+import com.newbiest.base.constant.EnvConstant;
 import com.newbiest.base.threadlocal.ThreadLocalContext;
 import com.newbiest.base.utils.StringUtils;
 import com.newbiest.common.trigger.TriggerContext;
@@ -46,7 +46,7 @@ public abstract class TriggerThead implements Runnable {
                 Long executeTime = stopwatch.elapsed(TimeUnit.MILLISECONDS);
                 if (result.isRecordHistory()) {
                     TriggerInstanceHistory triggerInstanceHistory = (TriggerInstanceHistory) triggerContext.getBaseService().buildHistoryBean(triggerInstance, TriggerInstanceHistory.TRANS_TYPE_EXECUTE);
-                    triggerInstanceHistory.setExecuteTime(ThreadLocalContext.getSessionContext().getTransTime());
+                    triggerInstanceHistory.setExecuteTime(ThreadLocalContext.getTransactionTime());
                     triggerInstanceHistory.setResultCode(result.getResultCode());
                     triggerInstanceHistory.setResultText(result.getResultText());
                     if (TriggerResult.RESULT_CODE_SUCCESS.equals(result.getResultCode())) {
@@ -75,11 +75,8 @@ public abstract class TriggerThead implements Runnable {
     }
 
     public void generatorSessionContext() {
-        SessionContext sc = new SessionContext();
-        sc.setOrgRrn(NBOrg.GLOBAL_ORG_RRN);
-        sc.setUsername(StringUtils.SYSTEM_USER);
-        sc.setTransRrn(UUID.randomUUID().toString());
-        sc.setTransTime(new Date());
-        ThreadLocalContext.putSessionContext(sc);
+        ThreadLocalContext.putOrgRrn(EnvConstant.GLOBAL_ORG_RRN);
+        ThreadLocalContext.putUsername(StringUtils.SYSTEM_USER);
+        ThreadLocalContext.putTransactionId(UUID.randomUUID().toString());
     }
 }

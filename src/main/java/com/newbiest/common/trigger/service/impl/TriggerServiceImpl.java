@@ -1,5 +1,6 @@
 package com.newbiest.common.trigger.service.impl;
 
+import com.newbiest.base.constant.EnvConstant;
 import com.newbiest.base.exception.ClientException;
 import com.newbiest.base.exception.ClientParameterException;
 import com.newbiest.base.exception.ExceptionManager;
@@ -104,7 +105,7 @@ public class TriggerServiceImpl implements TriggerService {
     }
 
     public List<TriggerInstance> getTriggerInstance() throws ClientException {
-        return triggerInstanceRepository.findAll(NBOrg.GLOBAL_ORG_RRN);
+        return triggerInstanceRepository.findAll(EnvConstant.GLOBAL_ORG_RRN);
     }
 
     public List<TriggerLock> getAllTriggerLock() throws ClientException {

@@ -1,6 +1,7 @@
 package com.newbiest.common.trigger.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.newbiest.base.constant.EnvConstant;
 import com.newbiest.base.model.NBUpdatable;
 import com.newbiest.base.utils.DateUtils;
 import com.newbiest.security.model.NBOrg;
@@ -48,7 +49,7 @@ public class TriggerLock extends NBUpdatable {
     @PrePersist
     protected void prePersist() {
         super.prePersist();
-        this.orgRrn = NBOrg.GLOBAL_ORG_RRN;
+        this.orgRrn = EnvConstant.GLOBAL_ORG_RRN;
     }
 
 }

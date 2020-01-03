@@ -1,9 +1,9 @@
 package com.newbiest.common.trigger;
 
+import com.newbiest.base.core.YmlPropertyLoaderFactory;
 import com.newbiest.base.factory.ModelFactory;
 import com.newbiest.common.trigger.model.TriggerInstance;
 import com.newbiest.common.trigger.model.TriggerInstanceHistory;
-import com.newbiest.main.YmlPropertyLoaderFactory;
 import liquibase.integration.spring.SpringLiquibase;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
