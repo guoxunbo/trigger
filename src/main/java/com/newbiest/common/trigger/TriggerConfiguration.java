@@ -1,18 +1,14 @@
 package com.newbiest.common.trigger;
 
-import com.newbiest.base.core.YmlPropertyLoaderFactory;
 import com.newbiest.base.factory.ModelFactory;
 import com.newbiest.common.trigger.model.TriggerInstance;
 import com.newbiest.common.trigger.model.TriggerInstanceHistory;
 import liquibase.integration.spring.SpringLiquibase;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnResource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -24,7 +20,6 @@ import javax.sql.DataSource;
 @Data
 @Slf4j
 @ConfigurationProperties(prefix = "trigger")
-@PropertySource(value = "classpath:trigger.yml", factory = YmlPropertyLoaderFactory.class)
 public class TriggerConfiguration {
 
     public static final String LOCK_TYPE_DB = "db";
@@ -39,7 +34,6 @@ public class TriggerConfiguration {
     private String lockType = LOCK_TYPE_DB;
 
     @Bean("triggerLiquibase")
-    @ConditionalOnResource(resources = {"classpath:trigger.yml"})
     public SpringLiquibase liquibase(DataSource dataSource) throws Exception{
         if (log.isInfoEnabled()) {
             log.info("Load Trigger Liquibase Configuration.");

@@ -43,7 +43,7 @@ public class TriggerLock extends NBUpdatable {
      */
     @Column(name="EFFECTIVE_TIME")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(timezone = GMT_PE,pattern = DateUtils.DEFAULT_DATETIME_PATTERN)
+    @JsonFormat(pattern = DateUtils.DEFAULT_DATETIME_PATTERN)
     private Date effectiveTime;
 
     @PrePersist

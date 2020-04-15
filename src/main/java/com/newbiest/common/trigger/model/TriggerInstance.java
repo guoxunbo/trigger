@@ -2,7 +2,6 @@ package com.newbiest.common.trigger.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.newbiest.base.model.NBBase;
-import com.newbiest.base.model.NBUpdatable;
 import com.newbiest.base.utils.DateUtils;
 import com.newbiest.base.utils.StringUtils;
 import lombok.Data;
@@ -34,12 +33,12 @@ public class TriggerInstance extends NBBase {
 
     @Column(name="LAST_EXECUTE_TIME")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(timezone = NBUpdatable.GMT_PE,pattern = DateUtils.DEFAULT_DATETIME_PATTERN)
+    @JsonFormat(pattern = DateUtils.DEFAULT_DATETIME_PATTERN)
     private Date lastExecuteTime;
 
     @Column(name="NEXT_EXECUTE_TIME")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(timezone = NBUpdatable.GMT_PE,pattern = DateUtils.DEFAULT_DATETIME_PATTERN)
+    @JsonFormat(pattern = DateUtils.DEFAULT_DATETIME_PATTERN)
     private Date nextExecuteTime;
 
     /**

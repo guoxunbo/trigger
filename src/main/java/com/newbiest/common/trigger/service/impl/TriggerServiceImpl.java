@@ -1,14 +1,12 @@
 package com.newbiest.common.trigger.service.impl;
 
-import com.newbiest.base.constant.EnvConstant;
+import com.newbiest.base.annotation.BaseJpaFilter;
 import com.newbiest.base.exception.ClientException;
 import com.newbiest.base.exception.ClientParameterException;
 import com.newbiest.base.exception.ExceptionManager;
 import com.newbiest.base.model.NBParameter;
 import com.newbiest.base.service.BaseService;
 import com.newbiest.base.service.FrameworkCacheService;
-import com.newbiest.base.threadlocal.ThreadLocalContext;
-import com.newbiest.base.utils.CollectionUtils;
 import com.newbiest.base.utils.DateUtils;
 import com.newbiest.common.trigger.Exceptions;
 import com.newbiest.common.trigger.NewbiestScheduleConfig;
@@ -20,7 +18,6 @@ import com.newbiest.common.trigger.repository.TriggerInstanceHistoryRepository;
 import com.newbiest.common.trigger.repository.TriggerInstanceRepository;
 import com.newbiest.common.trigger.repository.TriggerLockRepository;
 import com.newbiest.common.trigger.service.TriggerService;
-import com.newbiest.security.model.NBOrg;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -40,6 +37,7 @@ import java.util.List;
 @Component
 @Transactional
 @Slf4j
+@BaseJpaFilter
 public class TriggerServiceImpl implements TriggerService {
 
     @Autowired
@@ -88,11 +86,11 @@ public class TriggerServiceImpl implements TriggerService {
 
     public TriggerInstance getTriggerInstanceByName(String name) throws ClientException {
         try {
-            List<TriggerInstance> triggerInstanceList = triggerInstanceRepository.findByNameAndOrgRrn(name, ThreadLocalContext.getOrgRrn());
-            if (CollectionUtils.isEmpty(triggerInstanceList)) {
+            TriggerInstance triggerInstance = triggerInstanceRepository.findOneByName(name);
+            if (triggerInstance == null) {
                 throw new ClientParameterException(Exceptions.TRIGGER_INST_IS_NOT_FOUND, name);
             }
-            return triggerInstanceList.get(0);
+            return triggerInstance;
         } catch (Exception e){
             throw ExceptionManager.handleException(e, log);
         }
@@ -101,15 +99,14 @@ public class TriggerServiceImpl implements TriggerService {
 
     public List<TriggerInstance> getTriggerByState(String state) throws ClientException {
         return triggerInstanceRepository.getByState(state);
-        //return triggerInstanceRepository.findAll(NBOrg.GLOBAL_ORG_RRN, "state = '" + state + "'", "");
     }
 
     public List<TriggerInstance> getTriggerInstance() throws ClientException {
-        return triggerInstanceRepository.findAll(EnvConstant.GLOBAL_ORG_RRN);
+        return triggerInstanceRepository.findAll();
     }
 
     public List<TriggerLock> getAllTriggerLock() throws ClientException {
-        return triggerLockRepository.findAll(ThreadLocalContext.getOrgRrn());
+        return triggerLockRepository.findAll();
     }
 
     public TriggerLock getTriggerLockByTriggerName(String triggerName) throws ClientException{
