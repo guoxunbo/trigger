@@ -89,7 +89,7 @@ public class NewbiestScheduleConfig implements SchedulingConfigurer {
         defaultTriggerContext.setTriggerService(triggerService);
         defaultTriggerContext.setBaseService(baseService);
         defaultTriggerContext.setSecurityService(securityService);
-        addTrigger(new DaemonThread(defaultTriggerContext, this));
+//        addTrigger(new DaemonThread(defaultTriggerContext, this));
     }
 
     public void addTrigger(TriggerThead triggerThead) {

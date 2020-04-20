@@ -1,8 +1,6 @@
 package com.newbiest.common.trigger.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.newbiest.base.model.NBHis;
-import com.newbiest.base.utils.DateUtils;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -43,7 +41,6 @@ public class TriggerInstanceHistory extends NBHis {
 
     @Column(name="EXECUTE_TIME")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = DateUtils.DEFAULT_DATETIME_PATTERN)
     private Date executeTime;
 
 }
