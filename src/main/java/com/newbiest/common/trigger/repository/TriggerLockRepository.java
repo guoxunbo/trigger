@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TriggerLockRepository extends IRepository<TriggerLock, Long> {
+public interface TriggerLockRepository extends IRepository<TriggerLock, String> {
 
     TriggerLock getByTriggerName(String triggerName) throws ClientException;
 

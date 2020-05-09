@@ -5,6 +5,6 @@ import com.newbiest.common.trigger.model.TriggerInstanceHistory;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TriggerInstanceHistoryRepository extends IRepository<TriggerInstanceHistory, Long> {
+public interface TriggerInstanceHistoryRepository extends IRepository<TriggerInstanceHistory, String> {
 
 }

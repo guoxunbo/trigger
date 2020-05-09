@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TriggerInstanceRepository extends IRepository<TriggerInstance, Long> {
+public interface TriggerInstanceRepository extends IRepository<TriggerInstance, String> {
 
     List<TriggerInstance> getByState(String state) throws ClientException;
 
