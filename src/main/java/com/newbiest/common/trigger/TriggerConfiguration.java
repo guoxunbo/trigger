@@ -48,9 +48,6 @@ public class TriggerConfiguration {
 
     @PostConstruct
     public void init() {
-        ModelFactory.registerModelClassLoader(TriggerInstance.class.getName(), TriggerInstance.class.getClassLoader());
-        ModelFactory.registerModelClassLoader(TriggerInstanceHistory.class.getName(), TriggerInstanceHistory.class.getClassLoader());
-
         ModelFactory.registerHistoryModelClassLoader(TriggerInstance.class.getName(), TriggerInstanceHistory.class.getClassLoader());
         ModelFactory.registerHistoryClassName(TriggerInstance.class.getName(), TriggerInstanceHistory.class.getName());
 
