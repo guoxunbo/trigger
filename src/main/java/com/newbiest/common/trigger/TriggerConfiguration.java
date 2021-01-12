@@ -46,10 +46,4 @@ public class TriggerConfiguration {
         return liquibase;
     }
 
-    @PostConstruct
-    public void init() {
-        ModelFactory.registerHistoryModelClassLoader(TriggerInstance.class.getName(), TriggerInstanceHistory.class.getClassLoader());
-        ModelFactory.registerHistoryClassName(TriggerInstance.class.getName(), TriggerInstanceHistory.class.getName());
-
-    }
 }
