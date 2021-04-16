@@ -1,14 +1,11 @@
 package com.newbiest.common.trigger.thread;
 
 import com.google.common.base.Stopwatch;
-import com.newbiest.base.constant.EnvConstant;
 import com.newbiest.base.threadlocal.ThreadLocalContext;
-import com.newbiest.base.utils.StringUtils;
 import com.newbiest.common.trigger.TriggerContext;
 import com.newbiest.common.trigger.model.TriggerInstance;
 import com.newbiest.common.trigger.model.TriggerInstanceHistory;
 import com.newbiest.common.trigger.model.TriggerResult;
-import com.newbiest.security.model.NBOrg;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +42,9 @@ public abstract class TriggerThead implements Runnable {
                 stopwatch.stop();
                 Long executeTime = stopwatch.elapsed(TimeUnit.MILLISECONDS);
                 if (result.isRecordHistory()) {
-                    TriggerInstanceHistory triggerInstanceHistory = (TriggerInstanceHistory) triggerContext.getBaseService().buildHistoryBean(triggerInstance, TriggerInstanceHistory.TRANS_TYPE_EXECUTE);
+                    TriggerInstanceHistory triggerInstanceHistory = new TriggerInstanceHistory();
+                    triggerInstanceHistory.setNbBase(triggerInstance);
+                    triggerInstanceHistory.setTransType(TriggerInstanceHistory.TRANS_TYPE_EXECUTE);
                     triggerInstanceHistory.setExecuteTime(ThreadLocalContext.getTransactionTime());
                     triggerInstanceHistory.setResultCode(result.getResultCode());
                     triggerInstanceHistory.setResultText(result.getResultText());
@@ -75,8 +74,8 @@ public abstract class TriggerThead implements Runnable {
     }
 
     public void generatorSessionContext() {
-        ThreadLocalContext.putOrgRrn(EnvConstant.GLOBAL_ORG_RRN);
-        ThreadLocalContext.putUsername(StringUtils.SYSTEM_USER);
-        ThreadLocalContext.putTransactionId(UUID.randomUUID().toString());
+//        ThreadLocalContext.putOrgRrn(EnvConstant.GLOBAL_ORG_RRN);
+//        ThreadLocalContext.putUsername(StringUtils.SYSTEM_USER);
+//        ThreadLocalContext.putTransactionId(UUID.randomUUID().toString());
     }
 }

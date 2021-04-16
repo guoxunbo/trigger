@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.newbiest.base.service.BaseService;
 import com.newbiest.base.service.FrameworkCacheService;
+import com.newbiest.base.threadlocal.ThreadLocalContext;
 import com.newbiest.base.utils.StringUtils;
 import com.newbiest.common.trigger.model.TriggerInstance;
 import com.newbiest.common.trigger.service.TriggerService;
@@ -35,7 +36,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @EnableScheduling
 @Data
 @Slf4j
-public class NewbiestScheduleConfig implements SchedulingConfigurer {
+public class NewbiestScheduleConfig implements SchedulingConfigurer  {
 
     private ScheduledTaskRegistrar scheduledTaskRegistrar;
 
@@ -63,10 +64,11 @@ public class NewbiestScheduleConfig implements SchedulingConfigurer {
      */
     @PostConstruct
     public void init() {
-        triggerInstanceList = triggerService.getTriggerInstance();
-        if (triggerInstanceList == null) {
-            triggerInstanceList = Lists.newArrayList();
-        }
+//        triggerInstanceList = triggerService.getTriggerInstance();
+//        if (triggerInstanceList == null) {
+//            triggerInstanceList = Lists.newArrayList();
+//        }
+//        ThreadLocalContext.remove();
     }
 
     @Override
@@ -74,7 +76,7 @@ public class NewbiestScheduleConfig implements SchedulingConfigurer {
         scheduledTaskRegistrar.setScheduler(taskExecutor());
         this.scheduledTaskRegistrar = scheduledTaskRegistrar;
         NewbiestScheduleConfig.getIsInit().set(true);
-        addDaemonTrigger();
+//        addDaemonTrigger();
     }
 
     public static AtomicBoolean getIsInit() {
@@ -141,9 +143,9 @@ public class NewbiestScheduleConfig implements SchedulingConfigurer {
      * 创建trigger的线程池，线程池大小为triggerInst长度+Daemon线程
      * @return
      */
-    @Bean(destroyMethod="shutdown")
+    @Bean
     public Executor taskExecutor() {
-        return new ScheduledThreadPoolExecutor(triggerInstanceList.size() + 1, new NamedThreadFactory(TriggerConfiguration.TRIGGER_THREAD_POOL_NAME));
+        return new ScheduledThreadPoolExecutor(10 + 1, new NamedThreadFactory(TriggerConfiguration.TRIGGER_THREAD_POOL_NAME));
     }
 
 }
